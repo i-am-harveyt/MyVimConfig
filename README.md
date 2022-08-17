@@ -16,9 +16,9 @@ Make directory: `~/.config/vim/plugin`. If you use Neovim , check if `~/.config/
 
 1. Open Vim/Neovim.
 
-2. run command `:PlugInstall`, and wait for download.
+2. Run command `:PlugInstall`, and wait for download.
 
-3. Reopen your vim. Done!
+3. Reopen your Vim/Neovim. Done!
 
 ## Features
 
@@ -26,7 +26,7 @@ The only feature is that, this can make your life a tiny little bit easier.
 
 If your life is easy enough, you can say there's no feature. 
 
-## Packages in this Config.
+## Packages used in this Config.
 
 WhichKey: A great thing for people who don't(or cannot) remember commands like me.
 
