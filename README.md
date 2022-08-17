@@ -1,16 +1,20 @@
 # My Minimal Vim Config file
 
-This is my minimal vim and neovim config! Let WhichKey and NERDTree make my life easier.
+This is my minimal Vim and Neovim config! Let WhichKey and NERDTree make my life easier.
 
 ## Before Started
 
-Install VimPlug from [VimPlug Repo](https://github.com/junegunn/vim-plug), select Vim version. If you use neovim, install the one for neovim.
+Install VimPlug from [VimPlug](https://github.com/junegunn/vim-plug) Repo, select Vim version. If you use Neovim, install the one for Neovim.
 
-Make directory: `~/.config/vim/plugin`. If you use neovim , check if `~/.config/nvim/plugged/` is made.
+Make directory: `~/.config/vim/plugin`. If you use Neovim , check if `~/.config/nvim/plugged/` is made.
 
 ## Quick Start
 
-1. Open Vim
+1. Run `git clone https://github.com/i-am-harveyt/MyVimConfig.git`.
+
+2. Move `vimrc` to root directory, and rename `vimrc` to `.vimrc` If you use Neovim, move `init.vim` to `.config/nvim/`.
+
+1. Open Vim/Neovim.
 
 2. run command `:PlugInstall`, and wait for download.
 
