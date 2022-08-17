@@ -91,7 +91,7 @@ let g:which_key_map.t = {
     \ 'name': '+tab',
     \ 'n': 'next-tab',
     \ 'p': 'previous-tab',
-    \ 'N': 'New-tab'
+    \ 'N': 'New-tab',
     \ 'c': 'tab-close'
     \}
 
