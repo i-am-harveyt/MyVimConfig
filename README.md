@@ -16,11 +16,8 @@ Make directory: `~/.config/vim/plugin`. If you use Neovim , check if `~/.config/
 
 2. Move `vimrc` to root directory, and rename `vimrc` to `.vimrc` If you use Neovim, move `init.vim` to `.config/nvim/`.
 
-1. Open Vim/Neovim.
+3. Run `vim +PlugInstall`.
 
-2. Run command `:PlugInstall`, and wait for download.
-
-3. Reopen your Vim/Neovim. Done!
 
 ## Features
 
