@@ -2,6 +2,8 @@
 
 This is my minimal Vim and Neovim config! Let WhichKey and NERDTree make my life easier.
 
+*I found that this may not work well on Windows.*
+
 ## Before Started
 
 Install VimPlug from [VimPlug](https://github.com/junegunn/vim-plug) Repo, select Vim version. If you use Neovim, install the one for Neovim.
@@ -31,4 +33,8 @@ If your life is easy enough, you can say there's no feature.
 WhichKey: A great thing for people who don't(or cannot) remember commands like me.
 
 NERDTree: A side bar that list all your files in this directory, you can also navigate in it, which makes your life easier.
+
+## Remove
+
+Remove config file and plugin folder
 

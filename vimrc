@@ -1,4 +1,3 @@
-set relativenumber
 set nu rnu
 set smartindent
 set autoindent
@@ -9,11 +8,11 @@ set mouse=a
 set cursorline
 set showcmd
 set encoding=UTF-8
-set clipboard=unnamedplus
+set clipboard=unnamed
 set updatetime=300
 syntax enable
-set background=light
 set backspace=indent,eol,start
+set t_Co=256
 
 
 " For bracket auto-completion
@@ -35,44 +34,47 @@ inoremap <expr> > strpart(getline('.'), col('.')-1, 1) == ">" ? "\<Right>" : ">"
 " inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " For use <c-j> to trigger completion
-inoremap <silent><expr> <c-j> coc#_select_confirm()
+" inoremap <silent><expr> <c-j> coc#_select_confirm()
+
+"For VimPlug
+call plug#begin('~/.config/vim/plugin')
+
+Plug 'scrooloose/nerdtree'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'liuchengxu/vim-which-key'
+Plug 'liuchengxu/space-vim-dark'
+
+call plug#end()
 
 " For StartUp settings
 function StartUp()
-    colorscheme space-vim-dark
     if ''==@%
         NERDTree
     endif
 endfunction
 autocmd VimEnter * call StartUp()
 
+" colorscheme
+colorscheme space-vim-dark
+
 " For airline
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled=1
-
-"For VimPlug
-call plug#begin('~/.config/vim/plugin')
-
-Plug 'jacoborus/tender.vim'
-Plug 'liuchengxu/space-vim-dark'
-Plug 'scrooloose/nerdtree'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'liuchengxu/vim-which-key'
-
-call plug#end()
-
 
 " For WhichKey
 set timeoutlen=100
 call which_key#register('<Space>', "g:which_key_map")
 let g:mapleader = "\<Space>"
 nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
+
+nnoremap <Leader>e :NERDTreeToggle <CR>
 nnoremap <Leader>Q :q <CR>
 let g:which_key_map = {
     \ 'name': 'All',
     \ 'Q': 'quit',
+    \ 'e': 'Explorer',
     \}
 
 nnoremap <Leader>fs :w <CR>
@@ -87,12 +89,14 @@ nnoremap <Leader>tn :tabNext <CR>
 nnoremap <Leader>tp :tabprevious <CR>
 nnoremap <Leader>tN :tabnew <CR>
 nnoremap <Leader>tc :tabclose <CR>
+nnoremap <Leader>te :tabe<space>
 let g:which_key_map.t = {
     \ 'name': '+tab',
     \ 'n': 'next-tab',
     \ 'p': 'previous-tab',
     \ 'N': 'New-tab',
-    \ 'c': 'tab-close'
+    \ 'c': 'tab-close',
+    \ 'e': 'edit-in-new-tab',
     \}
 
 nnoremap <Leader>Tt :NERDTreeToggle <CR>
@@ -100,7 +104,7 @@ nnoremap <Leader>Tr :NERDTreeRefreshRoot <CR>
 let g:which_key_map.T = {
     \ 'name': '+NERDTree',
     \ 't': 'toggle-NERDTree',
-    \ 'r': 'refresh-NERDTree'
+    \ 'r': 'refresh-NERDTree',
     \}
 
 nnoremap <Leader>;; :source % <CR>
@@ -108,7 +112,7 @@ nnoremap <Leader>;t :terminal <CR>
 let g:which_key_map[';'] = {
     \ 'name': '+commonly-used-command',
     \ ';': 'source %',
-    \ 't': 'terminal'
+    \ 't': 'terminal',
     \}
 
 nnoremap <Leader>wc :close <CR>
@@ -124,15 +128,15 @@ let g:which_key_map['w'] = {
     \ 'j': 'move-to-below-window',
     \ 'k': 'move-to-upper-window',
     \ 'l': 'move-to-left-window',
-    \ 'b': 'balance-window'
+    \ 'b': 'balance-window',
     \}
 
 nnoremap <Leader>wsv <C-w>v <CR>
 nnoremap <Leader>wsh <C-w>s <CR>
 let g:which_key_map.w.s = {
     \ 'name': '+split',
-    \ 'h': 'split-horizontally',
-    \ 'v': 'split-vertically'
+    \ 'h': 'split-up-down',
+    \ 'v': 'split-left-right',
     \}
 
 
