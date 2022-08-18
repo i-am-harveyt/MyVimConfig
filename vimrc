@@ -1,6 +1,5 @@
 set nu rnu
 set smartindent
-set autoindent
 set tabstop=4
 set shiftwidth=4
 set expandtab
@@ -11,9 +10,9 @@ set encoding=UTF-8
 set clipboard=unnamed
 set updatetime=300
 syntax enable
+set background=dark
 set backspace=indent,eol,start
 set t_Co=256
-
 
 " For bracket auto-completion
 inoremap " ""<LEFT>

@@ -10,6 +10,7 @@ set encoding=UTF-8
 set clipboard=unnamed
 set updatetime=300
 syntax enable
+set background=dark
 set backspace=indent,eol,start
 set t_Co=256
 
