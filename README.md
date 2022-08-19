@@ -2,7 +2,9 @@
 
 This is my minimal Vim and Neovim config! Let WhichKey and NERDTree make my life easier.
 
-*I found that this may not work well on Windows.*
+## Bug fixed:
+
+After set 256 color support, now GUI run on Git Bash (on Windows) can also looks pretty.
 
 ## Before Started
 
