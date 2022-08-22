@@ -13,6 +13,9 @@ syntax enable
 set background=dark " If your terminal window is light theme, turn light
 set backspace=indent,eol,start
 set t_Co=256 " support 256 colors
+" To avoid bug in CoC
+set nobackup
+set nowritebackup
 
 
 " For bracket auto-completion
@@ -28,13 +31,6 @@ inoremap { {}<LEFT>
 inoremap <expr> } strpart(getline('.'), col('.')-1, 1) == "}" ? "\<Right>" : "}"
 " inoremap < <><LEFT>
 inoremap <expr> > strpart(getline('.'), col('.')-1, 1) == ">" ? "\<Right>" : ">"
-
-" For use <Tab> to navigate the completion list
-" inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-" For use <c-j> to trigger completion
-" inoremap <silent><expr> <c-j> coc#_select_confirm()
 
 "For VimPlug
 call plug#begin('~/.config/vim/plugin')
@@ -57,6 +53,9 @@ Plug 'chriskempson/vim-tomorrow-theme'
 " Commentary
 Plug 'tpope/vim-commentary'
 
+" vim-coc
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 call plug#end()
 
 " For StartUp settings
@@ -67,13 +66,18 @@ function StartUp()
 endfunction
 autocmd VimEnter * call StartUp()
 
-" colorscheme: space vim dark
+" For CoC
+" Use <C-n>, <C-p>, <up> and <down> to navigate completion list:
+inoremap <silent><expr> <C-j> coc#pum#visible() ? coc#pum#next(1) : "\<C-j>"
+inoremap <silent><expr> <C-k> coc#pum#visible() ? coc#pum#prev(1) : "\<C-k>"
+inoremap <silent><expr> <down> coc#pum#visible() ? coc#pum#next(0) : "\<down>"
+inoremap <silent><expr> <up> coc#pum#visible() ? coc#pum#prev(0) : "\<up>"
+" Use <C-i> to confirm
+inoremap <silent><expr> <C-i> coc#pum#visible() ? coc#pum#confirm() : "\<C-i>"
+
+" Colorschemes
 " colorscheme space-vim-dark
-
-" colorscheme: tomorrow night eighties
 colorscheme tomorrow-night-eighties
-
-" colorscheme: one dark
 " colorscheme onedark
 
 " For airline
@@ -158,3 +162,8 @@ let g:which_key_map.w.s = {
     \ 'v': 'split-left-right',
     \}
 
+nnoremap <Leader>ld :CocDiagnostics <CR>
+let g:which_key_map.l = {
+    \ 'name': '+CoC',
+    \ 'd': 'Diagnostics',
+    \}

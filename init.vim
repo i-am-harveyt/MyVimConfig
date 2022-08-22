@@ -13,6 +13,9 @@ syntax enable
 set background=dark " If your terminal window is light theme, turn light
 set backspace=indent,eol,start
 set t_Co=256 " support 256 colors
+" To avoid bug in CoC
+set nobackup
+set nowritebackup
 
 " For bracket auto-completion
 inoremap " ""<LEFT>
@@ -73,12 +76,19 @@ function StartUp()
 endfunction
 autocmd VimEnter * call StartUp()
 
+" For CoC
+" Use <C-n>, <C-p>, <up> and <down> to navigate completion list:
+inoremap <silent><expr> <C-j> coc#pum#visible() ? coc#pum#next(1) : "\<C-j>"
+inoremap <silent><expr> <C-k> coc#pum#visible() ? coc#pum#prev(1) : "\<C-k>"
+inoremap <silent><expr> <down> coc#pum#visible() ? coc#pum#next(0) : "\<down>"
+inoremap <silent><expr> <up> coc#pum#visible() ? coc#pum#prev(0) : "\<up>"
+" Use <C-i> to confirm
+inoremap <silent><expr> <C-i> coc#pum#visible() ? coc#pum#confirm() : "\<C-i>"
+
 " colorscheme: space vim dark
 " colorscheme space-vim-dark
-
 " colorscheme: tomorrow night eighties
 colorscheme tomorrow-night-eighties
-
 " colorscheme: one dark
 " colorscheme onedark
 
@@ -164,3 +174,8 @@ let g:which_key_map.w.s = {
     \ 'v': 'split-left-right',
     \}
 
+nnoremap <Leader>ld :CocDiagnostics <CR>
+let g:which_key_map.l = {
+    \ 'name': '+CoC',
+    \ 'd': 'Diagnostics',
+    \}

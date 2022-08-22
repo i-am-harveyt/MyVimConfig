@@ -35,6 +35,8 @@ NERDTree: A side bar that list all your files in this directory, you can also na
 
 Commentary: Space+/, add/remove comment
 
+CoC: Auto-completion.
+
 ## Remove
 
 Remove config file and plugin folder
