@@ -29,9 +29,11 @@ If your life is easy enough, you can say there's no feature.
 
 ## Packages used in this Config.
 
-WhichKey: A great thing for people who don't(or cannot) remember commands like me.
+WhichKey: A great thing for people who don't(or cannot) remember commands like me. Hit Space, good thing happends.
 
 NERDTree: A side bar that list all your files in this directory, you can also navigate in it, which makes your life easier.
+
+Commentary: Space+/, add/remove comment
 
 ## Remove
 
