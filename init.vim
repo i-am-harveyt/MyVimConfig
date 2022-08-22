@@ -1,18 +1,18 @@
-set nu rnu
-set smartindent
+set nu rnu " set hybrid line number
+set smartindent " make indent smart
 set tabstop=4
 set shiftwidth=4
-set expandtab
-set mouse=a
-set cursorline
+set expandtab " tab to space
+set mouse=a " enable mouse
+set cursorline " set a line show here cursor is
 set showcmd
 set encoding=UTF-8
 set clipboard=unnamed
-set updatetime=300
+set updatetime=100
 syntax enable
-set background=dark
+set background=dark " If your terminal window is light theme, turn light
 set backspace=indent,eol,start
-set t_Co=256
+set t_Co=256 " support 256 colors
 
 " For bracket auto-completion
 inoremap " ""<LEFT>
@@ -43,13 +43,25 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
-Plug 'liuchengxu/space-vim-dark'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+" NERDtree
 Plug 'scrooloose/nerdtree'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+" Airline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+
+" Which key
 Plug 'liuchengxu/vim-which-key'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+" Themes
+Plug 'liuchengxu/space-vim-dark'
+Plug 'joshdick/onedark.vim'
+Plug 'chriskempson/vim-tomorrow-theme'
+
+" Commentary
+Plug 'tpope/vim-commentary'
 
 call plug#end()
 
@@ -61,46 +73,54 @@ function StartUp()
 endfunction
 autocmd VimEnter * call StartUp()
 
-" colorscheme
-colorscheme space-vim-dark
+" colorscheme: space vim dark
+" colorscheme space-vim-dark
+
+" colorscheme: tomorrow night eighties
+colorscheme tomorrow-night-eighties
+
+" colorscheme: one dark
+" colorscheme onedark
 
 " For airline
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled=1
 
 " For WhichKey
-set timeoutlen=100
+set timeoutlen=50
 call which_key#register('<Space>', "g:which_key_map")
 let g:mapleader = "\<Space>"
 nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
 
-nnoremap <Leader>e :NERDTreeToggle <CR>
 nnoremap <Leader>Q :q <CR>
+nnoremap <Leader>e :NERDTreeToggle <CR>
+nnoremap <Leader>/ :Commentary<CR>
 let g:which_key_map = {
     \ 'name': 'All',
     \ 'Q': 'quit',
     \ 'e': 'Explorer',
+    \ '/': 'Comment',
     \}
 
 nnoremap <Leader>fs :w <CR>
 nnoremap <Leader>fe :e<space>
-nnoremap <Leader>ff :Telescope find_files <CR>
 let g:which_key_map.f = {
     \ 'name': '+file',
     \ 's': 'save',
     \ 'e': 'edit',
-    \ 'f': 'find-file',
     \}
 
 nnoremap <Leader>tn :tabNext <CR>
 nnoremap <Leader>tp :tabprevious <CR>
 nnoremap <Leader>tN :tabnew <CR>
+nnoremap <Leader>tc :tabclose <CR>
 nnoremap <Leader>te :tabe<space>
 let g:which_key_map.t = {
     \ 'name': '+tab',
     \ 'n': 'next-tab',
     \ 'p': 'previous-tab',
     \ 'N': 'New-tab',
+    \ 'c': 'tab-close',
     \ 'e': 'edit-in-new-tab',
     \}
 
@@ -109,7 +129,7 @@ nnoremap <Leader>Tr :NERDTreeRefreshRoot <CR>
 let g:which_key_map.T = {
     \ 'name': '+NERDTree',
     \ 't': 'toggle-NERDTree',
-    \ 'r': 'refresh-NERDTree'
+    \ 'r': 'refresh-NERDTree',
     \}
 
 nnoremap <Leader>;; :source % <CR>
@@ -117,7 +137,7 @@ nnoremap <Leader>;t :terminal <CR>
 let g:which_key_map[';'] = {
     \ 'name': '+commonly-used-command',
     \ ';': 'source %',
-    \ 't': 'terminal'
+    \ 't': 'terminal',
     \}
 
 nnoremap <Leader>wc :close <CR>
@@ -133,17 +153,14 @@ let g:which_key_map['w'] = {
     \ 'j': 'move-to-below-window',
     \ 'k': 'move-to-upper-window',
     \ 'l': 'move-to-left-window',
-    \ 'b': 'balance-window'
+    \ 'b': 'balance-window',
     \}
 
 nnoremap <Leader>wsv <C-w>v <CR>
 nnoremap <Leader>wsh <C-w>s <CR>
 let g:which_key_map.w.s = {
     \ 'name': '+split',
-    \ 'h': 'split-horizontally',
-    \ 'v': 'split-vertically'
+    \ 'h': 'split-up-down',
+    \ 'v': 'split-left-right',
     \}
-
-
-
 

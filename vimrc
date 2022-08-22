@@ -1,18 +1,19 @@
-set nu rnu
-set smartindent
+set nu rnu " set hybrid line number
+set smartindent " make indent smart
 set tabstop=4
 set shiftwidth=4
-set expandtab
-set mouse=a
-set cursorline
+set expandtab " tab to space
+set mouse=a " enable mouse
+set cursorline " set a line show here cursor is
 set showcmd
 set encoding=UTF-8
 set clipboard=unnamed
-set updatetime=300
+set updatetime=100
 syntax enable
-set background=dark
+set background=dark " If your terminal window is light theme, turn light
 set backspace=indent,eol,start
-set t_Co=256
+set t_Co=256 " support 256 colors
+
 
 " For bracket auto-completion
 inoremap " ""<LEFT>
@@ -38,12 +39,23 @@ inoremap <expr> > strpart(getline('.'), col('.')-1, 1) == ">" ? "\<Right>" : ">"
 "For VimPlug
 call plug#begin('~/.config/vim/plugin')
 
+" NERDtree
 Plug 'scrooloose/nerdtree'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+" Airline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+
+" Which key
 Plug 'liuchengxu/vim-which-key'
+
+" Themes
 Plug 'liuchengxu/space-vim-dark'
+Plug 'joshdick/onedark.vim'
+Plug 'chriskempson/vim-tomorrow-theme'
+
+" Commentary
+Plug 'tpope/vim-commentary'
 
 call plug#end()
 
@@ -55,25 +67,33 @@ function StartUp()
 endfunction
 autocmd VimEnter * call StartUp()
 
-" colorscheme
-colorscheme space-vim-dark
+" colorscheme: space vim dark
+" colorscheme space-vim-dark
+
+" colorscheme: tomorrow night eighties
+colorscheme tomorrow-night-eighties
+
+" colorscheme: one dark
+" colorscheme onedark
 
 " For airline
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled=1
 
 " For WhichKey
-set timeoutlen=100
+set timeoutlen=50
 call which_key#register('<Space>', "g:which_key_map")
 let g:mapleader = "\<Space>"
 nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
 
-nnoremap <Leader>e :NERDTreeToggle <CR>
 nnoremap <Leader>Q :q <CR>
+nnoremap <Leader>e :NERDTreeToggle <CR>
+nnoremap <Leader>/ :Commentary<CR>
 let g:which_key_map = {
     \ 'name': 'All',
     \ 'Q': 'quit',
     \ 'e': 'Explorer',
+    \ '/': 'Comment',
     \}
 
 nnoremap <Leader>fs :w <CR>
@@ -137,6 +157,4 @@ let g:which_key_map.w.s = {
     \ 'h': 'split-up-down',
     \ 'v': 'split-left-right',
     \}
-
-
 
