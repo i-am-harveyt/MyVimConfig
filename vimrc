@@ -17,7 +17,6 @@ set t_Co=256 " support 256 colors
 set nobackup
 set nowritebackup
 
-
 " For bracket auto-completion
 inoremap " ""<LEFT>
 inoremap <expr> " strpart(getline('.'), col('.')-1, 1) == "\"" ? "\<Right>" : "\"\"\<Left>"
@@ -34,28 +33,22 @@ inoremap <expr> > strpart(getline('.'), col('.')-1, 1) == ">" ? "\<Right>" : ">"
 
 "For VimPlug
 call plug#begin('~/.config/vim/plugin')
-
 " NERDtree
 Plug 'scrooloose/nerdtree'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 " Airline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-
 " Which key
 Plug 'liuchengxu/vim-which-key'
-
 " Themes
 Plug 'liuchengxu/space-vim-dark'
 Plug 'joshdick/onedark.vim'
 Plug 'chriskempson/vim-tomorrow-theme'
-
 " Commentary
 Plug 'tpope/vim-commentary'
-
 " vim-coc
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
 call plug#end()
 
 " For StartUp settings
@@ -83,6 +76,7 @@ colorscheme tomorrow-night-eighties
 " For airline
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled=1
+autocmd BufDelete * call airline#extensions#tabline#buflist#invalidate()
 
 " For WhichKey
 set timeoutlen=50
@@ -90,9 +84,11 @@ call which_key#register('<Space>', "g:which_key_map")
 let g:mapleader = "\<Space>"
 nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
 
+"Use <Space>/ to comment
+nnoremap <Leader>/ :Commentary<CR> 
+
 nnoremap <Leader>Q :q <CR>
 nnoremap <Leader>e :NERDTreeToggle <CR>
-nnoremap <Leader>/ :Commentary<CR>
 let g:which_key_map = {
     \ 'name': 'All',
     \ 'Q': 'quit',

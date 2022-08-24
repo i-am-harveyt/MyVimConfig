@@ -2,6 +2,10 @@
 
 This is my minimal Vim and Neovim config! Let WhichKey and NERDTree make my life easier.
 
+Update(8/24. 2022):
+
+Well, I think it is no longer "Minimal" XDD, it's getting bigger.
+
 ## Bug fixed:
 
 After set 256 color support, now GUI run on Git Bash (on Windows) can also looks pretty.
@@ -27,15 +31,15 @@ The only feature is that, this can make your life a tiny little bit easier.
 
 If your life is easy enough, you can say there's no feature. 
 
-## Packages used in this Config.
+## Packages which you may have to read their README file that I used in this Config.
 
-WhichKey: A great thing for people who don't(or cannot) remember commands like me. Hit Space, good thing happends.
+[WhichKey](https://github.com/liuchengxu/vim-which-key): A great thing for people who don't(or cannot) remember commands like me. Hit Space, good thing happends.
 
-NERDTree: A side bar that list all your files in this directory, you can also navigate in it, which makes your life easier.
+NERDTree: A side bar that list all your files in this directory, you can also navigate in it, which makes your life easier.(I'm not sure which is the original repo)
 
-Commentary: Space+/, add/remove comment
+[Commentary](https://github.com/tpope/vim-commentary): Space+/, add/remove comment
 
-CoC: Auto-completion.
+[CoC](https://github.com/neoclide/coc.nvim): Auto-completion.
 
 ## Remove
 
