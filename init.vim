@@ -33,29 +33,24 @@ inoremap <expr> > strpart(getline('.'), col('.')-1, 1) == ">" ? "\<Right>" : ">"
 
 "For VimPlug
 call plug#begin('~/.config/nvim/plugged')
-
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-
 " NERDtree
 Plug 'scrooloose/nerdtree'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 " Airline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-
 " Which key
 Plug 'liuchengxu/vim-which-key'
-
 " Themes
 Plug 'liuchengxu/space-vim-dark'
 Plug 'joshdick/onedark.vim'
 Plug 'chriskempson/vim-tomorrow-theme'
-
 " Commentary
 Plug 'tpope/vim-commentary'
 
@@ -99,6 +94,14 @@ let g:which_key_map = {
     \ 'Q': [':q', 'quit'],
     \ 'e': [':NERDTreeToggle', 'Explorer'],
     \ '/': [':Commentary', 'Comment'],
+    \}
+
+let g:which_key_map['b'] = {
+    \'name': '+buffer',
+    \'N': [':enew', 'new-empty-buffer'],
+    \'d': [':bd', 'delete-buffer'],
+    \'n': [':bn', 'next-buffer'],
+    \'p': [':bp', 'previous-buffer'],
     \}
 
 let g:which_key_map.f = {

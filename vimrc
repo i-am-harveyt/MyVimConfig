@@ -91,6 +91,14 @@ let g:which_key_map = {
     \ '/': [':Commentary', 'Comment'],
     \}
 
+let g:which_key_map['b'] = {
+    \'name': '+buffer',
+    \'N': [':enew', 'new-empty-buffer'],
+    \'d': [':bd', 'delete-buffer'],
+    \'n': [':bn', 'next-buffer'],
+    \'p': [':bp', 'previous-buffer'],
+    \}
+
 let g:which_key_map.f = {
     \ 'name': '+file',
     \ 's': [':w', 'save'],
