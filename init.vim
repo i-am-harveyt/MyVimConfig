@@ -16,6 +16,8 @@ set t_Co=256 " support 256 colors
 " To avoid bug in CoC
 set nobackup
 set nowritebackup
+set hlsearch
+set termguicolors
 
 " For bracket auto-completion
 inoremap " ""<LEFT>
@@ -65,13 +67,19 @@ endfunction
 autocmd VimEnter * call StartUp()
 
 " For CoC
-" Use <C-n>, <C-p>, <up> and <down> to navigate completion list:
-inoremap <silent><expr> <C-j> coc#pum#visible() ? coc#pum#next(1) : "\<C-j>"
-inoremap <silent><expr> <C-k> coc#pum#visible() ? coc#pum#prev(1) : "\<C-k>"
-inoremap <silent><expr> <down> coc#pum#visible() ? coc#pum#next(0) : "\<down>"
-inoremap <silent><expr> <up> coc#pum#visible() ? coc#pum#prev(0) : "\<up>"
-" Use <C-i> to confirm
-inoremap <silent><expr> <C-i> coc#pum#visible() ? coc#pum#confirm() : "\<C-i>"
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice.
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
 "colorscheme
 " colorscheme space-vim-dark
@@ -151,4 +159,5 @@ let g:which_key_map.w.s = {
 let g:which_key_map.l = {
     \ 'name': '+CoC',
     \ 'd': [':CocDiagnostics', 'Diagnostics'],
+    \ 'a': ['<Plug>(coc-codeaction)', 'Action'],
     \}

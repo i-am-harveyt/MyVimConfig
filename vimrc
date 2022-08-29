@@ -16,12 +16,14 @@ set t_Co=256 " support 256 colors
 " To avoid bug in CoC
 set nobackup
 set nowritebackup
+set hlsearch
+set termguicolors
 
 " For bracket auto-completion
 inoremap " ""<LEFT>
 inoremap <expr> " strpart(getline('.'), col('.')-1, 1) == "\"" ? "\<Right>" : "\"\"\<Left>"
 " inoremap ' ''<LEFT>
-" inoremap <expr> ' strpart(getline('.'), col('.')-1, 1) == "\'" ? "\<Right>" : "\'\'\<Left>"
+" inoremap <expr> ' strpart(getline('.'), col('.')-1, 1) == "\ '" ? "\<Right>" : "\ '\ '\<Left>"
 inoremap ( ()<LEFT>
 inoremap <expr> ) strpart(getline('.'), col('.')-1, 1) == ")" ? "\<Right>" : ")"
 inoremap [ []<LEFT>
@@ -49,6 +51,7 @@ Plug 'chriskempson/vim-tomorrow-theme'
 Plug 'tpope/vim-commentary'
 " vim-coc
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 call plug#end()
 
 " For StartUp settings
@@ -60,18 +63,26 @@ endfunction
 autocmd VimEnter * call StartUp()
 
 " For CoC
-" Use <C-n>, <C-p>, <up> and <down> to navigate completion list:
-inoremap <silent><expr> <C-j> coc#pum#visible() ? coc#pum#next(1) : "\<C-j>"
-inoremap <silent><expr> <C-k> coc#pum#visible() ? coc#pum#prev(1) : "\<C-k>"
-inoremap <silent><expr> <down> coc#pum#visible() ? coc#pum#next(0) : "\<down>"
-inoremap <silent><expr> <up> coc#pum#visible() ? coc#pum#prev(0) : "\<up>"
-" Use <C-i> to confirm
-inoremap <silent><expr> <C-i> coc#pum#visible() ? coc#pum#confirm() : "\<C-i>"
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice.
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
 " Colorschemes
 " colorscheme space-vim-dark
-colorscheme tomorrow-night-eighties
-" colorscheme onedark
+" colorscheme tomorrow-night-eighties
+colorscheme onedark
 
 " For airline
 let g:airline_powerline_fonts=1
@@ -92,17 +103,26 @@ let g:which_key_map = {
     \}
 
 let g:which_key_map['b'] = {
-    \'name': '+buffer',
-    \'N': [':enew', 'new-empty-buffer'],
-    \'d': [':bd', 'delete-buffer'],
-    \'n': [':bn', 'next-buffer'],
-    \'p': [':bp', 'previous-buffer'],
+    \ 'name': '+buffer',
+    \ 'N': [':enew', 'new-empty-buffer'],
+    \ 'd': [':bd', 'delete-buffer'],
+    \ 'n': [':bn', 'next-buffer'],
+    \ 'p': [':bp', 'previous-buffer'],
     \}
 
+let g:which_key_map['P'] = {
+    \ 'name': '+VimPlug',
+    \ 'i': [':PlugInstall', 'Install'],
+    \ 'c': [':PlugClean', 'Clean'],
+    \ 's': [':PlugStatus', 'Status'],
+    \ 'u': [':PlugUpdate', 'Update'],
+    \}
+
+nnoremap <Leader>fe :e<space>
 let g:which_key_map.f = {
     \ 'name': '+file',
     \ 's': [':w', 'save'],
-    \ 'e': [':e', 'edit'],
+    \ 'e': 'edit',
     \}
 
 nnoremap <Leader>te :tabe<space>
@@ -130,10 +150,10 @@ let g:which_key_map[';'] = {
 let g:which_key_map['w'] = {
     \ 'name': '+windows',
     \ 'c': ['<C-w>c', 'close-current-window'] ,
-    \ 'h': ['<C-w><left>', 'move-to-left-window'] ,
-    \ 'j': ['<C-w><down>', 'move-to-below-window'] ,
-    \ 'k': ['<C-w><up>', 'move-to-upper-window'],
-    \ 'l': ['<C-w><left>', 'move-to-left-window'],
+    \ 'h': ['<C-w>h', 'move-to-left-window'] ,
+    \ 'j': ['<C-w>j', 'move-to-below-window'] ,
+    \ 'k': ['<C-w>k', 'move-to-upper-window'],
+    \ 'l': ['<C-w>l', 'move-to-left-window'],
     \ 'b': ['<C-w>=', 'balance-window'],
     \}
 
@@ -146,4 +166,5 @@ let g:which_key_map.w.s = {
 let g:which_key_map.l = {
     \ 'name': '+CoC',
     \ 'd': [':CocDiagnostics', 'Diagnostics'],
+    \ 'a': ['<Plug>(coc-codeaction)', 'Action'],
     \}
