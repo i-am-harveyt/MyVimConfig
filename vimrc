@@ -44,9 +44,8 @@ Plug 'vim-airline/vim-airline-themes'
 " Which key
 Plug 'liuchengxu/vim-which-key'
 " Themes
-Plug 'liuchengxu/space-vim-dark'
-Plug 'joshdick/onedark.vim'
 Plug 'chriskempson/vim-tomorrow-theme'
+Plug 'yunlingz/ci_dark'
 " Commentary
 Plug 'tpope/vim-commentary'
 " vim-coc
@@ -80,9 +79,8 @@ function! CheckBackspace() abort
 endfunction
 
 " Colorschemes
-" colorscheme space-vim-dark
 " colorscheme tomorrow-night-eighties
-colorscheme onedark
+colorscheme ci_dark
 
 " For airline
 let g:airline_powerline_fonts=1
