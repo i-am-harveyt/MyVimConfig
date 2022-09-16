@@ -1,7 +1,7 @@
 set nu rnu " set hybrid line number
 set smartindent " make indent smart
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set expandtab " tab to space
 set mouse=a " enable mouse
 set cursorline " set a line show here cursor is
@@ -97,6 +97,7 @@ let g:which_key_map = {
     \ 'name': 'All',
     \ 'Q': [':q', 'quit'],
     \ 'e': [':NERDTreeToggle', 'Explorer'],
+    \ 't': [':term', 'terminal']
     \ '/': [':Commentary', 'Comment'],
     \}
 
@@ -123,26 +124,10 @@ let g:which_key_map.f = {
     \ 'e': 'edit',
     \}
 
-nnoremap <Leader>te :tabe<space>
-let g:which_key_map.t = {
-    \ 'name': '+tab',
-    \ 'n': [':tabNext', 'next-tab'],
-    \ 'p': [':tabprevious', 'previous-tab'],
-    \ 'N': [':tabnew', 'New-tab'],
-    \ 'c': [':tabclose', 'tab-close'],
-    \ 'e': 'edit-in-new-tab',
-    \}
-
 let g:which_key_map.T = {
     \ 'name': '+NERDTree',
     \ 't': [':NERDTreeToggle', 'toggle-NERDTree'],
     \ 'r': [':NERDTreeRefreshRoot', 'refresh-NERDTree'],
-    \}
-
-let g:which_key_map[';'] = {
-    \ 'name': '+commonly-used-command',
-    \ ';': [':source %', 'source %'],
-    \ 't': [':term', 'terminal'],
     \}
 
 let g:which_key_map['w'] = {
