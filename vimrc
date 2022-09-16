@@ -97,7 +97,7 @@ let g:which_key_map = {
     \ 'name': 'All',
     \ 'Q': [':q', 'quit'],
     \ 'e': [':NERDTreeToggle', 'Explorer'],
-    \ 't': [':term', 'terminal']
+    \ 't': [':term', 'terminal'],
     \ '/': [':Commentary', 'Comment'],
     \}
 
