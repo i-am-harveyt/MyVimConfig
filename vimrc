@@ -22,8 +22,6 @@ set termguicolors
 " For bracket auto-completion
 inoremap " ""<LEFT>
 inoremap <expr> " strpart(getline('.'), col('.')-1, 1) == "\"" ? "\<Right>" : "\"\"\<Left>"
-" inoremap ' ''<LEFT>
-" inoremap <expr> ' strpart(getline('.'), col('.')-1, 1) == "\ '" ? "\<Right>" : "\ '\ '\<Left>"
 inoremap ( ()<LEFT>
 inoremap <expr> ) strpart(getline('.'), col('.')-1, 1) == ")" ? "\<Right>" : ")"
 inoremap [ []<LEFT>
@@ -44,13 +42,12 @@ Plug 'vim-airline/vim-airline-themes'
 " Which key
 Plug 'liuchengxu/vim-which-key'
 " Themes
-Plug 'chriskempson/vim-tomorrow-theme'
 Plug 'yunlingz/ci_dark'
+Plug 'liuchengxu/space-vim-dark'
 " Commentary
 Plug 'tpope/vim-commentary'
 " vim-coc
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
 call plug#end()
 
 " For StartUp settings
@@ -79,8 +76,8 @@ function! CheckBackspace() abort
 endfunction
 
 " Colorschemes
-" colorscheme tomorrow-night-eighties
-colorscheme ci_dark
+" colorscheme ci_dark
+colorscheme space-vim-dark
 
 " For airline
 let g:airline_powerline_fonts=1
@@ -97,7 +94,6 @@ let g:which_key_map = {
     \ 'name': 'All',
     \ 'Q': [':q', 'quit'],
     \ 'e': [':NERDTreeToggle', 'Explorer'],
-    \ 't': [':term', 'terminal'],
     \ '/': [':Commentary', 'Comment'],
     \}
 
@@ -151,3 +147,4 @@ let g:which_key_map.l = {
     \ 'd': [':CocDiagnostics', 'Diagnostics'],
     \ 'a': ['<Plug>(coc-codeaction)', 'Action'],
     \}
+
